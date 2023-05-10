@@ -8,27 +8,33 @@ const generateKeys = ()=> {
 
     console.log("private key : ", privateKey)
     console.log("public key : ", publicKey)
+    return {
+        privateKey,
+        publicKey
+    }
     
 }
 
 const generateAddress = ()=>{
     publicKey = "02ec0cbdc6ace976c52802c5b6133b6f13eb472cd53ec2e0c15c10760e17d4203c"
-    const address = keccak256(hexToBytes(publicKey).slice(1)).slice(-20);
-    console.log("address for : ", toHex(address))
+    const address = toHex(keccak256(hexToBytes(publicKey).slice(1)).slice(-20));
+    console.log("address for : ", address)
+    return address
 }
 
 const generateSign = ()=>{
     const msg = "transfer";
     const privateKey = "8d5ea24f098b88fcb7d08a9717a56fe8613e333e24fe28527dfc3f24a3d08acd"
     hashedMsg = keccak256(utf8ToBytes(msg));
-    console.log("hashedMsg ", hashedMsg);
-
     const sig = secp.secp256k1.sign(hashedMsg, privateKey);
     console.log(sig)
+    return sig;
+}
 
-    const publicKey = sig.recoverPublicKey(hashedMsg).toHex()
+const recoverPublicKey = (signature, hashedMessage)=>{
+    const publicKey = signature.recoverPublicKey(hashedMessage).toHex()
     console.log("public key ", publicKey)
-
+    return publicKey
 }
 
 //private key :  8d5ea24f098b88fcb7d08a9717a56fe8613e333e24fe28527dfc3f24a3d08acd

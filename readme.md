@@ -8,6 +8,10 @@ However, something that we would like to incoporate is Public Key Cryptography. 
 For an overview of this project as well as getting started instructions, check out the following video:
 
 https://www.loom.com/share/0d3c74890b8e44a5918c4cacb3f646c4
+
+### Keys
+Private keys corresponding public keys and corresponding addresses can be found in client/src/App.jsx 
+Functions to generate new keys can be found in server/scripts/generateKeys.js
  
 ### Client
 
